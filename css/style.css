@@ -25,3 +25,8 @@
 #useTotal,#useSplit,#playAgain{
     display: none;
 }
+
+#controls button{
+    width: 75px;
+    height: 75px;
+}
