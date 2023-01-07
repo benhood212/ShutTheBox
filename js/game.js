@@ -8,6 +8,28 @@ function setDiceOptions(style){
     document.getElementById("useSplit").style.display = style;
 }
 
+function updateAttempts(){
+    if(localStorage.attempts){
+        localStorage.setItem("attempts",parseInt(localStorage.getItem("attempts")) + 1);
+        document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
+    }
+    else{
+        localStorage.setItem("attempts",1);
+        document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
+    }
+}
+
+function updateWins(){
+    if(localStorage.wins){
+        localStorage.setItem("wins",parseInt(localStorage.getItem("wins"))+1);
+        document.getElementById("wonGames").innerHTML = localStorage.getItem("wins");
+    }
+    else{
+        localStorage.setItem("wins",1);
+        document.getElementById("wonGames").innerHTML = localStorage.getItem("wins");
+    }
+}
+
 function rollDice(){
     document.getElementById("rollDice").style.display = "none";
 
@@ -19,34 +41,13 @@ function rollDice(){
 
     if(checkLossPotential()){
         document.getElementById("winLoss").innerHTML = "You Lost!";
-        if(localStorage.attempts){
-            localStorage.setItem("attempts",parseInt(localStorage.getItem("attempts")) + 1);
-            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
-        }
-        else{
-            localStorage.setItem("attempts",1);
-            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
-        }
+        updateAttempts();
         endGame();
     }
     else if(checkWinPotential()){
         document.getElementById("winLoss").innerHTML = "You Won!";
-        if(localStorage.attempts){
-            localStorage.setItem("attempts",parseInt(localStorage.getItem("attempts")) + 1);
-            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
-        }
-        else{
-            localStorage.setItem("attempts",1);
-            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
-        }
-        if(localStorage.wins){
-            localStorage.setItem("wins",parseInt(localStorage.getItem("wins"))+1);
-            document.getElementById("wonGames").innerHTML = localStorage.getItem("wins");
-        }
-        else{
-            localStorage.setItem("wins",1);
-            document.getElementById("wonGames").innerHTML = localStorage.getItem("wins");
-        }
+        updateAttempts();
+        updateWins();
         endGame();
     }
     else{
@@ -56,19 +57,21 @@ function rollDice(){
 
 function useTotal(){
     shutNumbers.push(diceOne + diceTwo);
-    setDiceOptions("none");
-    document.getElementById("rollDice").style.display = "inline";
-    document.getElementById("winLoss").innerHTML = "Roll the Dice!";
-    updateNumberDisplay();
+    updateAfterSelection();
 }
 
 function useSplit(){
     shutNumbers.push(diceOne);
     shutNumbers.push(diceTwo);
+    updateAfterSelection();
+}
+
+function updateAfterSelection(){
     setDiceOptions("none")
     document.getElementById("rollDice").style.display = "inline";
     document.getElementById("winLoss").innerHTML = "Roll the Dice!";
     updateNumberDisplay();
+
 }
 
 function updateNumberDisplay(){
