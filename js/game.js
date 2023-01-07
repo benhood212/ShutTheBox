@@ -44,12 +44,6 @@ function rollDice(){
         updateAttempts();
         endGame();
     }
-    else if(checkWinPotential()){
-        document.getElementById("winLoss").innerHTML = "You Won!";
-        updateAttempts();
-        updateWins();
-        endGame();
-    }
     else{
         document.getElementById("winLoss").innerHTML = "Pick Your Option!";
     }
@@ -67,10 +61,18 @@ function useSplit(){
 }
 
 function updateAfterSelection(){
-    setDiceOptions("none")
-    document.getElementById("rollDice").style.display = "inline";
-    document.getElementById("winLoss").innerHTML = "Roll the Dice!";
-    updateNumberDisplay();
+    if(checkWinPotential()){
+        document.getElementById("winLoss").innerHTML = "You Won!";
+        updateAttempts();
+        updateWins();
+        endGame();
+    }
+    else {
+        setDiceOptions("none")
+        document.getElementById("rollDice").style.display = "inline";
+        document.getElementById("winLoss").innerHTML = "Roll the Dice!";
+        updateNumberDisplay();
+    }
 
 }
 
