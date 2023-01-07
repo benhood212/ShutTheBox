@@ -17,17 +17,45 @@ function rollDice(){
 
     if(checkLossPotential()){
         document.getElementById("winLoss").innerHTML = "You Lost!";
+        if(localStorage.attempts){
+            localStorage.setItem("attempts",parseInt(localStorage.getItem("attempts")) + 1);
+            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
+        }
+        else{
+            localStorage.setItem("attempts",1);
+            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
+        }
         endGame();
     }
     else if(checkWinPotential()){
         document.getElementById("winLoss").innerHTML = "You Won!";
+        if(localStorage.attempts){
+            localStorage.setItem("attempts",parseInt(localStorage.getItem("attempts")) + 1);
+            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
+        }
+        else{
+            localStorage.setItem("attempts",1);
+            document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
+        }
+        if(localStorage.wins){
+            localStorage.setItem("wins",parseInt(localStorage.getItem("wins"))+1);
+            document.getElementById("wonGames").innerHTML = localStorage.getItem("wins");
+        }
+        else{
+            localStorage.setItem("wins",1);
+            document.getElementById("wonGames").innerHTML = localStorage.getItem("wins");
+        }
         endGame();
+    }
+    else{
+        document.getElementById("winLoss").innerHTML = "Pick Your Option!";
     }
 }
 
 function useTotal(){
     shutNumbers.push(diceOne + diceTwo);
     setDiceOptions("none");
+    document.getElementById("winLoss").innerHTML = "Roll the Dice!";
     updateNumberDisplay();
 }
 
@@ -35,6 +63,7 @@ function useSplit(){
     shutNumbers.push(diceOne);
     shutNumbers.push(diceTwo);
     setDiceOptions("none")
+    document.getElementById("winLoss").innerHTML = "Roll the Dice!";
     updateNumberDisplay();
 }
 
@@ -97,13 +126,27 @@ function endGame(){
 function playAgain(){
     document.getElementById("playAgain").style.display = "none";
     document.getElementById("rollDice").style.display = "inline";
-    diceOne = 0;
-    diceTwo = 0;
-    document.getElementById("dice1").innerHTML = diceOne;
-    document.getElementById("dice2").innerHTML = diceTwo;
+    document.getElementById("dice1").innerHTML = "X";
+    document.getElementById("dice2").innerHTML = "X";
+    document.getElementById("winLoss").innerHTML = "Roll The Dice!";
     shutNumbers = new Array();
     clearNumberDisplay();
-
 }
 
+function loadAttemptsAndWins(){
+    if(localStorage.attempts){
+        document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
+    }
+    else{
+        document.getElementById("attemptNumber").innerHTML = 0;
+    }
+    if(localStorage.wins){
+        document.getElementById("wonGames").innerHTML = localStorage.getItem("wins");
+    }
+    else{
+        document.getElementById("wonGames").innerHTML = 0;
+    }
+}
+
+loadAttemptsAndWins();
 setDiceOptions("none");
