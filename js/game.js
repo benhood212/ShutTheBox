@@ -3,6 +3,7 @@ let diceTwo = 0;
 
 let shutNumbers = new Array();
 
+
 function setDiceOptions(style){
     document.getElementById("useTotal").style.display = style;
     document.getElementById("useSplit").style.display = style;
@@ -44,12 +45,7 @@ function rollDice(){
         updateAttempts();
         endGame();
     }
-    else if(checkWinPotential()){
-        document.getElementById("winLoss").innerHTML = "You Won!";
-        updateAttempts();
-        updateWins();
-        endGame();
-    }
+
     else{
         document.getElementById("winLoss").innerHTML = "Pick Your Option!";
     }
@@ -71,6 +67,12 @@ function updateAfterSelection(){
     document.getElementById("rollDice").style.display = "inline";
     document.getElementById("winLoss").innerHTML = "Roll the Dice!";
     updateNumberDisplay();
+    if(checkWinPotential){
+        document.getElementById("winLoss").innerHTML = "You Won!";
+        updateAttempts();
+        updateWins();
+        endGame();
+    }
 
 }
 
@@ -114,6 +116,7 @@ function checkLossPotential(){
 
 function checkWinPotential(){
     let won = true;
+
     for(let i=1;i<=9;i++){
         if(shutNumbers.indexOf(i) == -1){
             won = false;
