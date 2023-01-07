@@ -61,6 +61,7 @@ function useSplit(){
 }
 
 function updateAfterSelection(){
+    updateNumberDisplay();
     if(checkWinPotential()){
         document.getElementById("winLoss").innerHTML = "You Won!";
         updateAttempts();
@@ -71,7 +72,6 @@ function updateAfterSelection(){
         setDiceOptions("none")
         document.getElementById("rollDice").style.display = "inline";
         document.getElementById("winLoss").innerHTML = "Roll the Dice!";
-        updateNumberDisplay();
     }
 
 }
