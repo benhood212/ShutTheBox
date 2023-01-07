@@ -7,8 +7,19 @@
     display: inline-block;
 }
 
+#numbers{
+    font-size:25px;
+}
+
+
 .dice{
     display: inline-block;
+    border-style: solid;
+    border-color: black;
+    border-width: 3px;
+    padding: 15px;
+    margin-top: 20px; 
+    margin-bottom: 20px;
 }
 
 #useTotal,#useSplit,#playAgain{
