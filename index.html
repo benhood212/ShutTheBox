@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>ShutTheBox</title>
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <h1>ShutTheBox</h1>
+        <div id="numbers">
+            <div id="1" class="number">1</div>
+            <div id="2" class="number">2</div>
+            <div id="3" class="number">3</div>
+            <div id="4" class="number">4</div>
+            <div id="5" class="number">5</div>
+            <div id="6" class="number">6</div>
+            <div id="7" class="number">7</div>
+            <div id="8" class="number">8</div>
+            <div id="9" class="number">9</div>
+        </div>
+
+        <div id="dice">
+            <div id="dice1" class="dice">X</div>
+            <div id="dice2" class="dice">X</div>
+        </div>
+
+        <div id="statistics">
+            <p>Number of Attempts: <span id="attemptNumber"></span></p>
+            <p>Number of Won Games: <span id="wonGames"></span></p>
+        </div>
+
+        <div id="controls">
+            <button id="rollDice" onclick="rollDice()">Roll Dice</button>
+            <br>
+            <button id="useTotal">Total</button><button id="useSplit">Split</button>
+        </div>
+
+        <script src="js/game.js"></script>
+    </body>
+</html>
