@@ -9,6 +9,8 @@ function setDiceOptions(style){
 }
 
 function rollDice(){
+    document.getElementById("rollDice").style.display = "none";
+
     diceOne = Math.floor(Math.random()*6) + 1;
     diceTwo = Math.floor(Math.random()*6) + 1;
 
@@ -55,6 +57,7 @@ function rollDice(){
 function useTotal(){
     shutNumbers.push(diceOne + diceTwo);
     setDiceOptions("none");
+    document.getElementById("rollDice").style.display = "inline";
     document.getElementById("winLoss").innerHTML = "Roll the Dice!";
     updateNumberDisplay();
 }
@@ -63,6 +66,7 @@ function useSplit(){
     shutNumbers.push(diceOne);
     shutNumbers.push(diceTwo);
     setDiceOptions("none")
+    document.getElementById("rollDice").style.display = "inline";
     document.getElementById("winLoss").innerHTML = "Roll the Dice!";
     updateNumberDisplay();
 }
