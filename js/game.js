@@ -4,10 +4,13 @@ let diceTwo = 0;
 let shutNumbers = new Array();
 
 function setDiceOptions(style){
+    // set dice display
     document.getElementById("useTotal").style.display = style;
     document.getElementById("useSplit").style.display = style;
 }
 
+
+// functions for updating local storage attempts and wins
 function updateAttempts(){
     if(localStorage.attempts){
         localStorage.setItem("attempts",parseInt(localStorage.getItem("attempts")) + 1);
@@ -30,6 +33,7 @@ function updateWins(){
     }
 }
 
+// called when roll dice is clicked
 function rollDice(){
     document.getElementById("rollDice").style.display = "none";
 
@@ -49,17 +53,20 @@ function rollDice(){
     }
 }
 
+// called when use total is clicked
 function useTotal(){
     shutNumbers.push(diceOne + diceTwo);
     updateAfterSelection();
 }
 
+// called when use split is clicked
 function useSplit(){
     shutNumbers.push(diceOne);
     shutNumbers.push(diceTwo);
     updateAfterSelection();
 }
 
+// run after split or total
 function updateAfterSelection(){
     updateNumberDisplay();
     if(checkWinPotential()){
@@ -76,6 +83,8 @@ function updateAfterSelection(){
 
 }
 
+
+
 function updateNumberDisplay(){
     for(let i=0;i<shutNumbers.length;i++){
         document.getElementById(shutNumbers[i]+"").setAttribute("style","color:#00FF00;");
@@ -88,6 +97,8 @@ function clearNumberDisplay(){
     }
 }
 
+
+// checks if game is lost
 function checkLossPotential(){
     let total = diceOne + diceTwo;
     let totalImpossible = false;
@@ -108,12 +119,11 @@ function checkLossPotential(){
         document.getElementById("useSplit").style.display = "inline";
     }
 
-    if(totalImpossible&&splitImpossible){
-        return true;
-    }
-    return false;
+    return totalImpossible&&splitImpossible;
+
 }
 
+// checks if game is won
 function checkWinPotential(){
     let won = true;
     for(let i=1;i<=9;i++){
@@ -124,6 +134,8 @@ function checkWinPotential(){
     return won;
 }
 
+
+// functions to make game replayable
 function endGame(){
     document.getElementById("rollDice").style.display = "none";
     setDiceOptions("none");
@@ -142,6 +154,9 @@ function playAgain(){
     clearNumberDisplay();
 }
 
+
+
+// loads values from local storage
 function loadAttemptsAndWins(){
     if(localStorage.attempts){
         document.getElementById("attemptNumber").innerHTML = localStorage.getItem("attempts");
