@@ -46,6 +46,7 @@ function rollDice(){
     if(checkLossPotential()){
         document.getElementById("winLoss").innerHTML = "You Lost!";
         updateAttempts();
+        calculateWinRate();
         endGame();
     }
     else{
@@ -73,6 +74,7 @@ function updateAfterSelection(){
         document.getElementById("winLoss").innerHTML = "You Won!";
         updateAttempts();
         updateWins();
+        calculateWinRate();
         endGame();
     }
     else {
@@ -172,5 +174,13 @@ function loadAttemptsAndWins(){
     }
 }
 
+function calculateWinRate(){
+    let wins = localStorage.getItem("wins");
+    let attempts = localStorage.getItem("attempts");
+    let winRate = Math.round((wins / attempts) * 100 * 100) / 100;
+    document.getElementById("winRate").innerHTML = winRate;
+}
+
 loadAttemptsAndWins();
+calculateWinRate();
 setDiceOptions("none");
